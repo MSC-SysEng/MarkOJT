@@ -83,12 +83,12 @@ class bankApp(object):
 
     def writeAccounts(self):
         for account in bank.accountDict:
-            g = 0
             x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus()]
-            #f = open('prime.txt', 'w').close()
+            f = open('prime.txt', 'w').close()
             f = open('prime.txt', 'a')
             f.writelines(x)
 
+#f.write('\n')
 
 
 
@@ -97,9 +97,6 @@ class bankApp(object):
 
 bank=bankApp()
 bank.importAcc()
-
-
-
 
 nextAccNo = str(len(bankApp.accountDict)+1)
 
@@ -158,7 +155,6 @@ while ch != 10:
     elif ch == '9':
         bank.writeAccounts()
         print("\tAccounts written to txt file")
-        break
     elif ch == '10':
         print("\tThanks for using bank management system")
         break
