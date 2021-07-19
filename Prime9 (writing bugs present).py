@@ -2,6 +2,7 @@
 #Add write/save data to txt file (formatting issue when writing)
 #Add backup/archive file
 #Test
+#write to text file function temporary for testing.
 
 #account class creation
 class account(object):
@@ -84,7 +85,7 @@ class bankApp(object):
         for account in bank.accountDict:
             g = 0
             x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus()]
-            f = open('prime.txt', 'w').close()
+            #f = open('prime.txt', 'w').close()
             f = open('prime.txt', 'a')
             f.writelines(x)
 
