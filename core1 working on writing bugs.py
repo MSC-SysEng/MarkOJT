@@ -83,24 +83,14 @@ class bankApp(object):
 
     def writeAccounts(self):
         for account in bank.accountDict:
-            g = 0
             x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus()]
             f = open('prime.txt', 'w').close()
             f = open('prime.txt', 'a')
             f.writelines(x)
 
 
-
-
-
-
-
 bank=bankApp()
 bank.importAcc()
-
-
-
-
 nextAccNo = str(len(bankApp.accountDict)+1)
 
 
@@ -164,6 +154,3 @@ while ch != 10:
     else :
         print("Invalid choice")
 
-
-         #num = int(input("\tEnter The account No. : "))
-       # modifyAccount(num)
