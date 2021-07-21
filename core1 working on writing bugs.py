@@ -3,9 +3,7 @@
 #Test
 #write to text file function temporary for testing.
 #So when creating two new accounts in a row it would erase the first account I have made with the data from the second account.If I immediately write each new created account upon creation this problem disappears.
-#Largest issue right now is when I use 'f = open('prime.txt', 'w').close()' and then write to the text file only the last account is written.
-#Got to be something to do with append and a blank file. or the loop erasing each account line a  new one is written. Could maybe write a header each time on write so already have a line present? Also can experiment with different ways of clearing txt file content.
-
+#Now this issue has returned. If I break the program then use the create account function a second time it's fine. When I use ot consecutively without comign out of the program route the second created account overwrites the first new account.
 
 #account class creation
 class account(object):
