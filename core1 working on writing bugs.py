@@ -82,12 +82,15 @@ class bankApp(object):
 
     def displayAccounts(self):
         for account in bank.accountDict:
-            print(self.accountDict[account].getAccNo(), self.accountDict[account].getFirstName(), self.accountDict[account].getSurname(), self.accountDict[account].getBalance(), self.accountDict[account].getAccStatus() )
+            print(self.accountDict[account].getAccNo(), self.accountDict[account].getFirstName(), self.accountDict[account].getSurname(), self.accountDict[account].getBalance(), self.accountDict[account].getAccStatus())
+
+    def eraseText(self):
+        f = open('prime.txt', 'w').close()
 
     def writeAccounts(self):
         for account in bank.accountDict:
             x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus(),'\n']
-            f = open('prime.txt', 'w').close()
+            #f = open('prime.txt', 'w').close()
             print (x)
             #this method works until I can figure out how to strip a list, or convert the list for stripping.
             x = ['Active' if i=='Active\n' else i for i in x]
@@ -132,6 +135,7 @@ while ch != 10:
 
     if ch == '1':
         bank.createAccount()
+        bank.eraseText()
         bank.writeAccounts()
     elif ch =='2':
        num = input("Enter Account Number:")
@@ -156,6 +160,7 @@ while ch != 10:
         num = input("Enter Account Number")
         print("Account Number:", num, "\nAccount Holder First Name:", bank.accountDict[num].getFirstName(),"\nAccount Holder Surname:",bank.accountDict[num].getSurname(), "\nAccount Balance:", bank.accountDict[num].getBalance(),"\nAccount Status:", bank.accountDict[num].getAccStatus())
     elif ch == '9':
+        bank.eraseText()
         bank.writeAccounts()
         print("\tAccounts written to txt file")
     elif ch == '10':
