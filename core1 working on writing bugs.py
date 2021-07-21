@@ -1,8 +1,11 @@
 #Add labels
-#Add write/save data to txt file (formatting issue when writing)
 #Add backup/archive file
 #Test
 #write to text file function temporary for testing.
+#So when creating two new accounts in a row it would erase the first account I have made with the data from the second account.If I immediately write each new created account upon creation this problem disappears.
+#Largest issue right now is when I use 'f = open('prime.txt', 'w').close()' and then write to the text file only the last account is written.
+#Got to be something to do with append and a blank file. or the loop erasing each account line a  new one is written. Could maybe write a header each time on write so already have a line present? Also can experiment with different ways of clearing txt file content.
+
 
 #account class creation
 class account(object):
@@ -83,10 +86,16 @@ class bankApp(object):
 
     def writeAccounts(self):
         for account in bank.accountDict:
-            x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus()]
+            x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus(),'\n']
             f = open('prime.txt', 'w').close()
+            print (x)
+            #this method works until I can figure out how to strip a list, or convert the list for stripping.
+            x = ['Active' if i=='Active\n' else i for i in x]
+            x = ['Closed' if i=='Closed\n' else i for i in x]
+            print (x)
             f = open('prime.txt', 'a')
             f.writelines(x)
+            f.close()
 
 
 bank=bankApp()
@@ -123,6 +132,7 @@ while ch != 10:
 
     if ch == '1':
         bank.createAccount()
+        bank.writeAccounts()
     elif ch =='2':
        num = input("Enter Account Number:")
        print(bank.accountDict[num].deposit())
