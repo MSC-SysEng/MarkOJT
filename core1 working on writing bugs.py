@@ -30,6 +30,8 @@ class account(object):
         return self.bal
     def getAccStatus(self):
         return self.aSt
+    def getNextAccNo(self):
+        nextAccNo = str(len(bankApp.accountDict)+1)
 
 #Setters
     def setFirstName(self):
@@ -101,7 +103,7 @@ class bankApp(object):
 
 bank=bankApp()
 bank.importAcc()
-nextAccNo = str(len(bankApp.accountDict)+1)
+
 
 
 
@@ -132,6 +134,7 @@ while ch != 10:
     ch = input("Choose an Option:")
 
     if ch == '1':
+        nextAccNo = str(len(bankApp.accountDict)+1)
         bank.createAccount()
         bank.eraseText()
         bank.writeAccounts()
