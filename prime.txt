@@ -1,6 +1,3 @@
 1,Mark,Elvin,10000,Active
 2,David,Elvin,20000,Active
 3,Frank,Elvin,3000,Closed
-4,George,Barclay,4000,Active
-5,fifth,five,55555,Active
-6,sixth,six,66666666666,Active

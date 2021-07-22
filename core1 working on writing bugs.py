@@ -1,9 +1,6 @@
-#Add labels
 #Add backup/archive file
 #Test
 #write to text file function temporary for testing.
-#So when creating two new accounts in a row it would erase the first account I have made with the data from the second account.If I immediately write each new created account upon creation this problem disappears.
-#Now this issue has returned. If I break the program then use the create account function a second time it's fine. When I use ot consecutively without comign out of the program route the second created account overwrites the first new account.
 
 #account class creation
 class account(object):
@@ -30,8 +27,6 @@ class account(object):
         return self.bal
     def getAccStatus(self):
         return self.aSt
-    def getNextAccNo(self):
-        nextAccNo = str(len(bankApp.accountDict)+1)
 
 #Setters
     def setFirstName(self):
@@ -57,7 +52,7 @@ class account(object):
         else:
             print ('To close an account balance must be 0')
 
-
+#bankApp class creation
 class bankApp(object):
 
     accountDict={}
@@ -70,7 +65,6 @@ class bankApp(object):
                 txtSplit = line.split(",")
                 self.accountDict[txtSplit[0]] = account(txtSplit[0],txtSplit[1],txtSplit[2],txtSplit[3],txtSplit[4])
 
-
     def createAccount(self):
         aNo = nextAccNo
         print ("AccountnextAccNo Number:", nextAccNo)
@@ -80,13 +74,16 @@ class bankApp(object):
         aSt = "Active"
         self.accountDict[aNo] = account(aNo,fN,sN,bal,aSt)
 
+#Displays all accounts
     def displayAccounts(self):
         for account in bank.accountDict:
             print(self.accountDict[account].getAccNo(), self.accountDict[account].getFirstName(), self.accountDict[account].getSurname(), self.accountDict[account].getBalance(), self.accountDict[account].getAccStatus())
 
+#Erase text file data in preparation for writing.
     def eraseText(self):
         f = open('prime.txt', 'w').close()
 
+#Save account information to text file
     def writeAccounts(self):
         for account in bank.accountDict:
             x = [self.accountDict[account].getAccNo(),",",self.accountDict[account].getFirstName(),",",self.accountDict[account].getSurname(),",",str(self.accountDict[account].getBalance()),",",self.accountDict[account].getAccStatus(),'\n']
@@ -101,19 +98,15 @@ class bankApp(object):
             f.close()
 
 
+#Importing account info in prep for
 bank=bankApp()
 bank.importAcc()
 
-
-
-
-
-
-#Choices
+#predef values for user options
 ch=''
 num=""
 
-
+#User options
 while ch != 10:
 
     print("""
@@ -131,6 +124,7 @@ while ch != 10:
     Select Your Option (1-10)
     """)
 
+#selector
     ch = input("Choose an Option:")
 
     if ch == '1':
