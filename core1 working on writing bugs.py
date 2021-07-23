@@ -1,6 +1,8 @@
 #Add backup/archive file
 #Test
 #write to text file function temporary for testing.
+#make a new function for writing i.e. holds links to erase and write functions in another function. Will cut down on duplication.
+#Figure out how to strip a list, or convert the list for stripping.
 
 #account class creation
 class account(object):
@@ -40,9 +42,16 @@ class account(object):
 
 #Balance deposits and withdrawals
     def deposit(self):
-        self.bal = self.bal + int(input("Enter Deposit Amount:"))
+        deposit = int(input("Enter Deposit Amount:"))
+        self.bal = self.bal + deposit
+        print(deposit,'Has been deposited to the account')
     def withdrawal(self):
-        self.bal = self.bal - int(input("Enter Withdrawal Amount:"))
+        withdraw = int(input("Enter Withdrawal Amount:"))
+        if self.bal-withdraw >=0:
+            self.bal = self.bal - withdraw
+            print(withdraw,'Has been withdrawn from the account')
+        else:
+            print('You cannot go overdrawn')
 
 #close account
     def closeAccount(self):
@@ -133,11 +142,15 @@ while ch != 10:
         bank.eraseText()
         bank.writeAccounts()
     elif ch =='2':
-       num = input("Enter Account Number:")
-       print(bank.accountDict[num].deposit())
+        num = input("Enter Account Number:")
+        bank.accountDict[num].deposit()
+        bank.eraseText()
+        bank.writeAccounts()
     elif ch == '3':
-       num = input("Enter Account Number:")
-       print(bank.accountDict[num].withdrawal())
+        num = input("Enter Account Number:")
+        bank.accountDict[num].withdrawal()
+        bank.eraseText()
+        bank.writeAccounts()
     elif ch == '4':
         num = input("Enter Account Number")
         print("Account Number:", num, "\nAccount Balance:", bank.accountDict[num].getBalance())
