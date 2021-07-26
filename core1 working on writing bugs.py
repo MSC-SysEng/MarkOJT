@@ -71,8 +71,9 @@ class bankApp(object):
         with open ("prime.txt", "r") as ad:
             txtLines = ad.readlines()
             for line in txtLines:
-                txtSplit = line.split(",")
+                txtSplit = line.strip("\n").split(",")
                 self.accountDict[txtSplit[0]] = account(txtSplit[0],txtSplit[1],txtSplit[2],txtSplit[3],txtSplit[4])
+
 
     def createAccount(self):
         aNo = nextAccNo
@@ -99,8 +100,8 @@ class bankApp(object):
             #f = open('prime.txt', 'w').close()
             print (x)
             #this method works until I can figure out how to strip a list, or convert the list for stripping.
-            x = ['Active' if i=='Active\n' else i for i in x]
-            x = ['Closed' if i=='Closed\n' else i for i in x]
+            #x = ['Active' if i=='Active\n' else i for i in x]
+            #x = ['Closed' if i=='Closed\n' else i for i in x]
             print (x)
             f = open('prime.txt', 'a')
             f.writelines(x)
